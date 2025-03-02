@@ -81,6 +81,8 @@
     <input type="number" id="wins">
     <label>Enter Losses</label>
     <input type="number" id="losses">
+    <label>Enter Risk Per Trade ($)</label>
+    <input type="number" id="riskPerTrade">
     <button onclick="calculateProfitability()">Calculate</button>
     <p id="profitResult"></p>
     <a href="index.html" class="link">Back to Home</a>
@@ -91,8 +93,9 @@
       let rrRatio = parseFloat(document.getElementById("rrRatio").value);
       let wins = parseInt(document.getElementById("wins").value);
       let losses = parseInt(document.getElementById("losses").value);
+      let riskPerTrade = parseFloat(document.getElementById("riskPerTrade").value);
 
-      if (isNaN(rrRatio) || isNaN(wins) || isNaN(losses) || rrRatio <= 0 || wins < 0 || losses < 0) {
+      if (isNaN(rrRatio) || isNaN(wins) || isNaN(losses) || isNaN(riskPerTrade) || rrRatio <= 0 || wins < 0 || losses < 0 || riskPerTrade <= 0) {
         document.getElementById("profitResult").innerText = "Please enter valid numbers.";
         return;
       }
@@ -101,12 +104,15 @@
       let winRate = wins / totalTrades;
       let lossRate = losses / totalTrades;
       let expectancy = (winRate * rrRatio) - lossRate;
+      let totalProfit = (wins * (riskPerTrade * rrRatio)) - (losses * riskPerTrade);
 
       let resultMessage = expectancy > 0
         ? `Your strategy is profitable. Expectancy: ${expectancy.toFixed(2)}`
         : `Your strategy is NOT profitable. Expectancy: ${expectancy.toFixed(2)}`;
 
-      document.getElementById("profitResult").innerText = resultMessage;
+      resultMessage += `<br>Total Profit/Loss: $${totalProfit.toFixed(2)}`;
+
+      document.getElementById("profitResult").innerHTML = resultMessage;
     }
   </script>
 </body>
