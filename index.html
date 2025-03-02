@@ -7,20 +7,24 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       text-align: center;
       padding: 50px;
     }
     .container {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.7);
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       max-width: 400px;
       margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     h1 {
       font-size: 24px;
@@ -30,14 +34,16 @@
       display: block;
       font-weight: 600;
       margin-top: 15px;
+      text-align: center;
     }
     input, button, select {
       width: 100%;
       padding: 12px;
-      margin-top: 5px;
+      margin-top: 10px;
       border-radius: 8px;
       border: none;
       font-size: 16px;
+      text-align: center;
     }
     input, select {
       background: rgba(255, 255, 255, 0.2);
@@ -54,6 +60,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
+      margin-top: 20px;
     }
     button:hover {
       background: #ff5733;
