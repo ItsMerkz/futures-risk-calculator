@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profitability Calculator</title>
+  <title>Futures Risk Management Calculator</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -33,7 +33,7 @@
       display: block;
       margin-top: 10px;
     }
-    input {
+    select, input {
       width: calc(100% - 20px);
       padding: 12px;
       margin-top: 5px;
@@ -74,16 +74,33 @@
 </head>
 <body>
   <div class="container">
-    <h1>Profitability Calculator</h1>
-    <label>Enter Risk-Reward Ratio (RR)</label>
-    <input type="number" id="rrRatio">
-    <label>Enter Wins</label>
-    <input type="number" id="wins">
-    <label>Enter Losses</label>
-    <input type="number" id="losses">
-    <button onclick="calculateProfitability()">Calculate</button>
-    <p id="profitResult"></p>
+    <h1>Futures Risk Management Calculator</h1>
+    <label>Select Instrument</label>
+    <select id="instrument">
+      <option value="NQ">NQ (Nasdaq 100 Futures)</option>
+      <option value="MNQ">MNQ (Micro Nasdaq 100 Futures)</option>
+      <option value="ES">ES (S&P 500 Futures)</option>
+      <option value="MES">MES (Micro S&P 500 Futures)</option>
+    </select>
+    <label>Enter Your Risk Amount ($)</label>
+    <input type="number" id="riskAmount">
+    <label>Enter Your Stop Loss (points)</label>
+    <input type="number" id="stopLoss">
+    <button onclick="calculateContracts()">Calculate</button>
+    <p id="result"></p>
+    <a href="profitability-calculator.html" class="link">Go to Profitability Calculator</a>
     <a href="index.html" class="link">Back to Home</a>
   </div>
+
+  <script>
+    function calculateContracts() {
+      let risk = document.getElementById('riskAmount').value;
+      let stop = document.getElementById('stopLoss').value;
+      let instrument = document.getElementById('instrument').value;
+      let multiplier = { NQ: 20, MNQ: 2, ES: 50, MES: 5 }[instrument] || 1;
+      let contracts = risk / (stop * multiplier);
+      document.getElementById('result').innerText = `You can trade ${contracts.toFixed(2)} ${instrument} contracts.`;
+    }
+  </script>
 </body>
 </html>
