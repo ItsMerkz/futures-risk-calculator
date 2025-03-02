@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profitability Calculator</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 15px;
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+    button {
+      background: #ff4b2b;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #ff5733;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .link {
+      margin-top: 20px;
+      color: #ff4b2b;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Profitability Calculator</h1>
+    <label>Enter Risk-Reward Ratio (RR)</label>
+    <input type="number" id="rrRatio" required>
+    <label>Enter Wins</label>
+    <input type="number" id="wins" required>
+    <label>Enter Losses</label>
+    <input type="number" id="losses" required>
+    <label>Enter Risk per Trade ($)</label>
+    <input type="number" id="riskPerTrade" required>
+    <button onclick="calculateProfitability()">Calculate</button>
+    <p id="profitResult"></p>
+    <a href="index.html" class="link">Back to Risk Management Calculator</a>
+  </div>
+
+  <script>
+    function calculateProfitability() {
+      let rr = document.getElementById('rrRatio').value;
+      let wins = document.getElementById('wins').value;
+      let losses = document.getElementById('losses').value;
+      let risk = document.getElementById('riskPerTrade').value;
+
+      let profit = (wins * rr * risk) - (losses * risk);
+      document.getElementById('profitResult').innerText = `Total Profit/Loss: $${profit.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
