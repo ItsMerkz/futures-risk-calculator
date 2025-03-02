@@ -70,6 +70,13 @@
       margin-top: 15px;
       font-weight: bold;
     }
+    .link {
+      margin-top: 20px;
+      color: #ff4b2b;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -88,7 +95,9 @@
     <input type="number" id="stopLoss" required>
     <button onclick="calculateContracts()">Calculate</button>
     <p id="result"></p>
+    <a href="profitability-calculator.html" class="link">Go to Profitability Calculator</a>
   </div>
+
   <script>
     function calculateContracts() {
       let risk = document.getElementById('riskAmount').value;
