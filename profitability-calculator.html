@@ -85,5 +85,29 @@
     <p id="profitResult"></p>
     <a href="index.html" class="link">Back to Home</a>
   </div>
+
+  <script>
+    function calculateProfitability() {
+      let rrRatio = parseFloat(document.getElementById("rrRatio").value);
+      let wins = parseInt(document.getElementById("wins").value);
+      let losses = parseInt(document.getElementById("losses").value);
+
+      if (isNaN(rrRatio) || isNaN(wins) || isNaN(losses) || rrRatio <= 0 || wins < 0 || losses < 0) {
+        document.getElementById("profitResult").innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      let totalTrades = wins + losses;
+      let winRate = wins / totalTrades;
+      let lossRate = losses / totalTrades;
+      let expectancy = (winRate * rrRatio) - lossRate;
+
+      let resultMessage = expectancy > 0
+        ? `Your strategy is profitable. Expectancy: ${expectancy.toFixed(2)}`
+        : `Your strategy is NOT profitable. Expectancy: ${expectancy.toFixed(2)}`;
+
+      document.getElementById("profitResult").innerText = resultMessage;
+    }
+  </script>
 </body>
 </html>
